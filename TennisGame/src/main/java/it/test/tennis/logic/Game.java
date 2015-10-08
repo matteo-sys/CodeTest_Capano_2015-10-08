@@ -3,12 +3,13 @@ package it.test.tennis.logic;
 import it.test.tennis.exception.GameStatusException;
 import it.test.tennis.model.Player;
 import it.test.tennis.view.Board;
+import it.test.tennis.view.MessageBoard;
 
 import org.apache.log4j.Logger;
 
 /** Game logic.
  * 
- * NOTE: only 2 players/teams
+ * NOTE: only 2 players
  * 
  * @author matteo.capano
  *
@@ -30,12 +31,19 @@ public class Game {
 	}
 	
 	// game status
-	private GameStatus status = GameStatus.UNSTARTED;
+	protected GameStatus status = GameStatus.UNSTARTED;
+	
+	// game rules
+	protected Rules rules = new GameRules();
+	
+	protected Rules getRules() {
+		return rules;
+	}
 	
 	// view board
-	private Board board = new Board();
+	protected Board board = new MessageBoard();
 	
-	Board getBoard() {
+	public Board getBoard() {
 		return board;
 	}
 	
@@ -51,12 +59,27 @@ public class Game {
 		p2 = new Player(nameP2, 0);
 	}
 	
+	public Game(String nameP1, String nameP2, Rules rules, Board board) {
+		this(nameP1, nameP2);
+		this.board = board;
+		this.rules = rules;
+	}
+	
 	/** start of the game (init) **/
-	public void start() {
+	private void start() {
 		// update status
-		status = GameStatus.STARTED;
-		
+		status = GameStatus.STARTED;		
 		log.info(" ** Game started !");
+	}
+	
+	public void play() throws GameStatusException {
+		// update status
+		start();
+		
+		// game loop
+		while (! isOver()) {
+			updateGame();
+		}
 	}
 	
 	public void updateGame() throws GameStatusException {
@@ -68,16 +91,28 @@ public class Game {
 		// update score
 		updateScore();
 		
+		// advantage
+		Player advantage = rules.checkAdvantage(p1, p2);
+		if (advantage!=null) {
+			board.printAdvantage(advantage, this);
+		}
+		
+		// deuce
+		boolean deuce = rules.checkDeuce(p1, p2);
+		if (deuce) {
+			board.printDeuce(this);
+		}
+		
 		// check rule to establish if game has a winner
-		Player winner = checkWinner();
+		Player winner = rules.checkWinner(p1, p2);
 		if (winner!=null) {
 			 gameOver();
 			 
-			 Board.printWinner(winner, this);
+			 board.printWinner(winner, this);
 		}
 	}
 
-	private void gameOver() {
+	protected void gameOver() {
 		status = GameStatus.ENDED;
 	}
 
@@ -103,38 +138,13 @@ public class Game {
 	}
 	
 	public void updateScore() {
-		// choice scoring player
-		int playerID = scorePoint();
-		
 		// scoring player
-		Player scoringPlayer = null;
-		if (playerID==0) {
-			scoringPlayer = p1;
-		} else {
-			scoringPlayer = p2;
-		}
+		Player scoringPlayer = rules.getScoringPlayer(p1, p2);
 		
 		// increment score for scoring player
 		scoringPlayer.incrementScore();
 		
 		// print player's score
 		getBoard().printPlayerScoreMessage(scoringPlayer);
-	}
-
-	protected int scorePoint() {
-		// random number in the interval [0,1]
-		double random = Math.random();
-		
-		// 50% probability for each player
-		if (random<0.5) {
-			return 0;
-		} else {
-			return 1;
-		}
-	}
-		
-	protected Player checkWinner() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
