@@ -7,9 +7,9 @@ public class Player {
 	
 	public Player() {}
 	
-	public Player(int score, String name) {
-		this.score = score;
+	public Player(String name, int score) {
 		this.name = name;
+		this.score = score;
 	}
 	
 	public int getScore() {

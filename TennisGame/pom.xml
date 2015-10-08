@@ -15,7 +15,7 @@
   </properties>
 
   <dependencies>
-  	<!-- Log -->
+  	<!-- Log4j -->
 	<dependency>
 		<groupId>log4j</groupId>
 		<artifactId>log4j</artifactId>
@@ -25,7 +25,8 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <!--<version>3.8.1</version>-->
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

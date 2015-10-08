@@ -1,5 +1,7 @@
 package it.test.tennis;
 
+import it.test.tennis.logic.Game;
+
 /**
  * Hello world!
  *

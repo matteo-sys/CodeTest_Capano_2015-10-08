@@ -1,4 +1,4 @@
-package it.test.tennis;
+package it.test.tennis.logic;
 
 public enum Score {
 	LOVE(0,"love"),
