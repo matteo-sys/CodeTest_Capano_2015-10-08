@@ -27,6 +27,7 @@ public class App implements Runnable
     
     public static void main( String[] args )
     {
-    	new App().run();
+    	//new App().run();
+    	new Thread(new App()).start();
     }
 }

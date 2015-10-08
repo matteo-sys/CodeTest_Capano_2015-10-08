@@ -5,8 +5,6 @@ import it.test.tennis.model.Player;
 import it.test.tennis.view.Board;
 import it.test.tennis.view.MessageBoard;
 
-import org.apache.log4j.Logger;
-
 /** Game logic.
  * 
  * NOTE: only 2 players
@@ -15,9 +13,6 @@ import org.apache.log4j.Logger;
  *
  */
 public class Game {
-	// logger
-	private static final Logger log = Logger.getLogger(Game.class);
-	
 	// game's players
 	Player p1;
 	Player p2;
@@ -36,16 +31,16 @@ public class Game {
 	// game rules
 	protected Rules rules = new GameRules();
 	
-	protected Rules getRules() {
-		return rules;
-	}
+//	protected Rules getRules() {
+//		return rules;
+//	}
 	
 	// view board
 	protected Board board = new MessageBoard();
 	
-	public Board getBoard() {
-		return board;
-	}
+//	public Board getBoard() {
+//		return board;
+//	}
 	
 	public Game() {
 		// init players
@@ -68,8 +63,14 @@ public class Game {
 	/** start of the game (init) **/
 	private void start() {
 		// update status
-		status = GameStatus.STARTED;		
-		log.info(" ** Game started !");
+		status = GameStatus.STARTED;
+		
+		// print start game
+		board.printStartGame();
+		
+		// print initial score
+		board.printPlayerScoreMessage(p1);
+		board.printPlayerScoreMessage(p2);
 	}
 	
 	public void play() throws GameStatusException {
@@ -145,6 +146,6 @@ public class Game {
 		scoringPlayer.incrementScore();
 		
 		// print player's score
-		getBoard().printPlayerScoreMessage(scoringPlayer);
+		board.printPlayerScoreMessage(scoringPlayer);
 	}
 }

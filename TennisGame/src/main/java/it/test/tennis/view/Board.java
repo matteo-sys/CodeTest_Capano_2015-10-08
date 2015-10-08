@@ -13,4 +13,6 @@ public interface Board {
 
 	public abstract void printDeuce(Game game);
 
+	public abstract void printStartGame();
+
 }

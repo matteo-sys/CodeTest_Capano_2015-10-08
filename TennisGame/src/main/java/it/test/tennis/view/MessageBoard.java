@@ -11,6 +11,10 @@ public class MessageBoard implements Board {
 	// logger
 	private static final Logger log = Logger.getLogger(MessageBoard.class);
 
+	public void printStartGame() {
+		print(" ** Game started !");
+	}
+	
 	/* (non-Javadoc)
 	 * @see it.test.tennis.view.Board#printPlayerScoreMessage(it.test.tennis.model.Player)
 	 */
@@ -20,18 +24,6 @@ public class MessageBoard implements Board {
 		
 		// print message
 		printScore(message);
-	}
-	
-	private String getScoreMessage(Player p) {
-		// player's score
-		int value = p.getScore();
-		
-		Score score = Score.getScore(value);
-		if (score!=null) {
-			return "Player: "+p.getName()+" -> score: "+value+" ("+score.label()+")";
-		} else {
-			return "Player: "+p.getName()+" -> score: "+value;
-		}
 	}
 
 	/* (non-Javadoc)
@@ -57,6 +49,18 @@ public class MessageBoard implements Board {
 	
 	private String getScore(Player p1, Player p2) {
 		return "["+p1.getScore()+"-"+p2.getScore()+"]";
+	}
+	
+	private String getScoreMessage(Player p) {
+		// player's score
+		int value = p.getScore();
+		
+		Score score = Score.getScore(value);
+		if (score!=null) {
+			return "Player: "+p.getName()+" -> score: "+value+" ("+score.label()+")";
+		} else {
+			return "Player: "+p.getName()+" -> score: "+value;
+		}
 	}
 	
 	protected void printScore(String message) {
