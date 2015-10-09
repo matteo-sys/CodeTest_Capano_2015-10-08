@@ -69,8 +69,8 @@ public class Game {
 		board.printStartGame();
 		
 		// print initial score
-		board.printPlayerScoreMessage(p1);
-		board.printPlayerScoreMessage(p2);
+		board.printPlayerScore(p1);
+		board.printPlayerScore(p2);
 	}
 	
 	public void play() throws GameStatusException {
@@ -146,6 +146,6 @@ public class Game {
 		scoringPlayer.incrementScore();
 		
 		// print player's score
-		board.printPlayerScoreMessage(scoringPlayer);
+		board.printPlayerScore(scoringPlayer);
 	}
 }

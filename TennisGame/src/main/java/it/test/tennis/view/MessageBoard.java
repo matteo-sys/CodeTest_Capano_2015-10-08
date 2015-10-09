@@ -18,12 +18,12 @@ public class MessageBoard implements Board {
 	/* (non-Javadoc)
 	 * @see it.test.tennis.view.Board#printPlayerScoreMessage(it.test.tennis.model.Player)
 	 */
-	public void printPlayerScoreMessage(Player p) {
+	public void printPlayerScore(Player p) {
 		// get message to print
 		String message = getScoreMessage(p);
 		
 		// print message
-		printScore(message);
+		printDetail(message);
 	}
 
 	/* (non-Javadoc)
@@ -63,7 +63,7 @@ public class MessageBoard implements Board {
 		}
 	}
 	
-	protected void printScore(String message) {
+	protected void printDetail(String message) {
 		log.debug(message);
 	}
 	

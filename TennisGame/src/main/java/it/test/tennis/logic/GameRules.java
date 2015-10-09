@@ -26,6 +26,10 @@ public class GameRules implements Rules {
 		int s1 = p1.getScore();
 		int s2 = p2.getScore();
 		
+		// check winning rule
+		if (checkWinner(p1,p2)!=null)
+			return null;
+		
 		if (s1>=3 && s2>=3) {
 			if (s1>s2)
 				return p1;

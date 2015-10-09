@@ -5,7 +5,7 @@ import it.test.tennis.model.Player;
 
 public interface Board {
 
-	public abstract void printPlayerScoreMessage(Player p);
+	public abstract void printPlayerScore(Player p);
 
 	public abstract void printWinner(Player winner, Game game);
 
