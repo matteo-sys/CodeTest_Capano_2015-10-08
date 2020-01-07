@@ -4,12 +4,13 @@ import it.test.tennis.logic.Game;
 import it.test.tennis.logic.Score;
 import it.test.tennis.model.Player;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /** View interface */
 public class MessageBoard implements Board {
 	// logger
-	private static final Logger log = Logger.getLogger(MessageBoard.class);
+	private static final Logger log = LogManager.getLogger(MessageBoard.class);
 
 	public void printStartGame() {
 		print(" ** Game started !");

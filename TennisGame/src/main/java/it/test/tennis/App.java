@@ -1,6 +1,7 @@
 package it.test.tennis;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import it.test.tennis.exception.GameStatusException;
 import it.test.tennis.logic.Game;
@@ -12,7 +13,7 @@ import it.test.tennis.logic.Game;
 public class App implements Runnable
 {
 	// logger
-	private static final Logger log = Logger.getLogger(App.class);
+	private static final Logger log = LogManager.getLogger(App.class);
 	
     public void run()
     {
